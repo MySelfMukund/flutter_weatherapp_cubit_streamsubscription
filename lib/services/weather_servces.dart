@@ -1,0 +1,66 @@
+import 'dart:convert';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:http/http.dart' as http;
+import 'package:weather_app_cubit_steam_subscription/constants.dart/constants.dart';
+import 'package:weather_app_cubit_steam_subscription/exceptions/weather_exceptions.dart';
+import 'package:weather_app_cubit_steam_subscription/models/direct_geocoding.dart';
+import 'package:weather_app_cubit_steam_subscription/models/weather.dart';
+import 'package:weather_app_cubit_steam_subscription/services/http_error_handler.dart';
+
+class WeatherServces {
+  final http.Client httpClient;
+
+  WeatherServces({required this.httpClient});
+
+  Future<DirectGeocoding> getDirectGeoCoding(String city) async {
+    final uri = Uri(
+      scheme: 'https',
+      host: kApiHost,
+      path: 'geo/1.0/direct',
+      queryParameters: {'q': city, 'limit': kLimit, 'appid': dotenv.env['APPID']},
+    );
+    try {
+      final http.Response response = await httpClient.get(uri);
+
+      if (response.statusCode != 200) {
+        throw HttpErrorHandler(response);
+      }
+
+      final resposeBody = json.decode(response.body);
+
+      if (resposeBody.isEmpty) {
+        throw WeatherExceptions('Cannot get the location of $city ');
+      }
+
+      final directGeoCoding = DirectGeocoding.fromJson(resposeBody);
+      return directGeoCoding;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Weather> getWeather(DirectGeocoding directGeocoding) async {
+    final Uri uri = Uri(scheme: 'https', host: kApiHost, path: '/data/2.5/weather', queryParameters: {
+      'lat': '${directGeocoding.lat}',
+      'lon': '${directGeocoding.lon}',
+      'units': kUnit,
+      'appid': dotenv.env['APPID']
+    });
+
+    try {
+      final http.Response response = await httpClient.get(uri);
+      if (response.statusCode != 200) {
+        throw HttpErrorHandler(response);
+      }
+
+      final resposeBody = json.decode(response.body);
+      if (response.body.isEmpty) {
+        throw WeatherExceptions('Cannot get the weather of ${directGeocoding.name}');
+      }
+      return Weather.fromJson(resposeBody);
+    } catch (e) {
+      rethrow;
+    }
+  }
+}
