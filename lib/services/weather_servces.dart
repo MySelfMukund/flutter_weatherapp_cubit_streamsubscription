@@ -8,10 +8,10 @@ import 'package:weather_app_cubit_steam_subscription/models/direct_geocoding.dar
 import 'package:weather_app_cubit_steam_subscription/models/weather.dart';
 import 'package:weather_app_cubit_steam_subscription/services/http_error_handler.dart';
 
-class WeatherServces {
+class WeatherApiServices {
   final http.Client httpClient;
 
-  WeatherServces({required this.httpClient});
+  WeatherApiServices({required this.httpClient});
 
   Future<DirectGeocoding> getDirectGeoCoding(String city) async {
     final uri = Uri(
@@ -24,7 +24,7 @@ class WeatherServces {
       final http.Response response = await httpClient.get(uri);
 
       if (response.statusCode != 200) {
-        throw HttpErrorHandler(response);
+        throw httpErrorHandler(response);
       }
 
       final resposeBody = json.decode(response.body);
@@ -51,7 +51,7 @@ class WeatherServces {
     try {
       final http.Response response = await httpClient.get(uri);
       if (response.statusCode != 200) {
-        throw HttpErrorHandler(response);
+        throw httpErrorHandler(response);
       }
 
       final resposeBody = json.decode(response.body);

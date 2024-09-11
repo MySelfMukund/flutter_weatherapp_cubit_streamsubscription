@@ -7,18 +7,18 @@ import '../models/weather.dart';
 import '../services/weather_servces.dart';
 
 class WeatherRepository {
-  final WeatherServces weatherServces;
+  final WeatherApiServices weatherApiServces;
   WeatherRepository({
-    required this.weatherServces,
+    required this.weatherApiServces,
   });
 
   Future<Weather> getWeather(String city) async {
     try {
-      final DirectGeocoding directGeocoding = await weatherServces.getDirectGeoCoding(city);
+      final DirectGeocoding directGeocoding = await weatherApiServces.getDirectGeoCoding(city);
 
       print("Direct Geocoding: ${directGeocoding.toString()}");
 
-      final Weather tempWeather = await weatherServces.getWeather(directGeocoding);
+      final Weather tempWeather = await weatherApiServces.getWeather(directGeocoding);
 
       final Weather weather = tempWeather.copyWith(name: directGeocoding.name, country: directGeocoding.country);
       print("Weather: ${weather.toString()}");
