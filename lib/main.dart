@@ -32,8 +32,9 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
           title: 'Weather App',
           theme: ThemeData(
+            primarySwatch: Colors.blue,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
+            // useMaterial3: true,
           ),
           routes: {
             '/': (context) => const HomePage(),
