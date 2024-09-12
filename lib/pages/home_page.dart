@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app_cubit_steam_subscription/cubits/weather/weather_cubit.dart';
 
-import '../cubits/weather/weather_cubit.dart';
+import 'search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,26 +12,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    //
-    _fetchWeather();
-    super.initState();
-  }
-
-  Future<void> _fetchWeather() async {
-    context.read<WeatherCubit>().getWeather('London');
-  }
-
+  String? _city;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather App'),
+        title: const Text('Weather'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              _city = await Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+              print(_city);
+              context.read<WeatherCubit>().getWeather(_city!);
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       body: const Padding(
         padding: EdgeInsets.all(16),
-        child: Text('Home  Page'),
+        child: Center(child: Text('Home Page')),
       ),
     );
   }
