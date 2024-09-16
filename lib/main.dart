@@ -6,6 +6,7 @@ import 'package:weather_app_cubit_steam_subscription/pages/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
 
+import 'cubits/temp_setting/temp_setting_cubit.dart';
 import 'repositors/weather_repository.dart';
 import 'services/weather_servces.dart';
 
@@ -28,20 +29,18 @@ class _MyAppState extends State<MyApp> {
     return RepositoryProvider(
       create: (context) => WeatherRepository(weatherApiServces: WeatherApiServices(httpClient: http.Client())),
       child: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => WeatherCubit(weatherRepository: context.read<WeatherRepository>()))],
+        providers: [
+          BlocProvider<WeatherCubit>(create: (context) => WeatherCubit(weatherRepository: context.read<WeatherRepository>())),
+          BlocProvider<TempSettingCubit>(create: (context) => TempSettingCubit()),
+        ],
         child: MaterialApp(
           title: 'Weather App',
           theme: ThemeData(
-            // primarySwatch: Colors.blue,
-            // primaryColor: Colors.red,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-            // useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue), // useMaterial3: true,
           ),
           routes: {
             '/': (context) => const HomePage(),
-            // '/search': (context) => const SearchPage(),
           },
-          // home: const MyHomePage(),
         ),
       ),
     );

@@ -3,10 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recase/recase.dart';
 import 'package:weather_app_cubit_steam_subscription/constants.dart/constants.dart';
+import 'package:weather_app_cubit_steam_subscription/cubits/temp_setting/temp_setting_cubit.dart';
 import 'package:weather_app_cubit_steam_subscription/cubits/weather/weather_cubit.dart';
 import 'package:weather_app_cubit_steam_subscription/widgets/eror_dialog.dart';
 
 import 'search_page.dart';
+import 'setting_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,6 +26,12 @@ class _HomePageState extends State<HomePage> {
           title: const Text('Weather', style: TextStyle(color: Colors.white)),
           backgroundColor: Theme.of(context).colorScheme.primary,
           actions: [
+            IconButton(
+                onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SettingsPage()),
+                    ),
+                icon: const Icon(Icons.settings, color: Colors.white)),
             IconButton(
               color: Colors.white,
               onPressed: () async {
@@ -49,6 +57,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   String showTemperatiure(double temp) {
+    final tempUnit = context.watch<TempSettingCubit>().state.tempUnit;
+    if (tempUnit == TempUnit.fahrenheit) {
+      return '${(temp * 9 / 5 + 32).toStringAsFixed(2)}°F';
+    }
     return '${temp.toStringAsFixed(2)}°C';
   }
 
