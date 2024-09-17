@@ -16,13 +16,11 @@ class WeatherCubit extends Cubit<WeatherState> {
 
     try {
       final Weather weather = await weatherRepository.getWeather(city);
-      print("State $state");
       emit(state.copyWith(weather: weather, status: WeatherStatus.loaded));
 
       return weather;
     } on CustomError catch (e) {
       emit(state.copyWith(error: e, status: WeatherStatus.error));
-      print("State $state");
     }
     return null;
   }

@@ -16,12 +16,10 @@ class WeatherRepository {
     try {
       final DirectGeocoding directGeocoding = await weatherApiServces.getDirectGeoCoding(city);
 
-      print("Direct Geocoding: ${directGeocoding.toString()}");
-
       final Weather tempWeather = await weatherApiServces.getWeather(directGeocoding);
 
       final Weather weather = tempWeather.copyWith(name: directGeocoding.name, country: directGeocoding.country);
-      print("Weather: ${weather.toString()}");
+
       return weather;
     } on WeatherExceptions catch (e) {
       throw CustomError(errMessage: e.message);
