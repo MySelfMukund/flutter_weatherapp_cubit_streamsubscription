@@ -1,6 +1,6 @@
 # Flutter Weather App (Cubit + StreamSubscription)
 
-A weather application built with Flutter that utilizes the **Cubit** state management pattern along with **StreamSubscription** to provide real-time weather updates for any given location.
+A weather application built with Flutter that utilizes the **Bloc(Cubit)** state management pattern along with **StreamSubscription** to provide real-time weather updates for any given location.
 
 ## Features
 
