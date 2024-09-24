@@ -1,16 +1,31 @@
-# weather_app_cubit_steam_subscription
+# Flutter Weather App (Cubit + StreamSubscription)
 
-A new Flutter project.
+A weather application built with Flutter that utilizes the **Cubit** state management pattern along with **StreamSubscription** to provide real-time weather updates for any given location.
+
+## Features
+
+- Fetch and display current weather information for any city.
+- Real-time updates on weather conditions using **StreamSubscription**.
+- Clean and responsive UI with a modern design.
+- Supports searching for cities and retrieving weather data.
+
+## Screenshots
+
+_Include some screenshots of your app's UI here (e.g., home screen, weather details, etc.)._
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+Ensure you have the following installed:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- Android Studio or Visual Studio Code (for development)
+- An API key from [OpenWeatherMap](https://openweathermap.org/api) or another weather service
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/MySelfMukund/flutter_weatherapp_cubit_streamsubscription.git
