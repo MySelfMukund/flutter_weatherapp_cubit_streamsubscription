@@ -57,9 +57,9 @@ Here's an overview of the project folder structure:
 
 ## How It Works
 
-- **Bloc Pattern** The app uses the **Bloc** pattern to manage the state of the weather data and UI updates.
+- **Bloc Pattern** used to manage the state of the weather data and UI updates.
 - **StreamSubscription** allows the app to listen for changes in weather data in real-time, ensuring users always receive the latest updates.
-- **Repository Layer** handles data persistence, ensuring that tasks are stored and retrieved efficiently.
+- **Repository Layer** abstracts the API interactions, handling requests and responses for fetching weather data.
 
 ## State Management
 
