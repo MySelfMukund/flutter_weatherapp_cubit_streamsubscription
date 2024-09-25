@@ -73,6 +73,6 @@ Here's an overview of the project folder structure:
 - **StreamSubscription** - For making API requests to fetch weather data
 
 ## Testing
-**Unit Testing**: Writting unit tests for Cubits and repository logic. **(coming soon...)**
-**Widget Testing**: Test the UI components for different weather states. **(coming soon..)**
-**Integration Testing**: Ensure that the app functions correctly as a whole. **(coming soon)**
+- **Unit Testing**: Writting unit tests for Cubits and repository logic. **(coming soon...)**
+- **Widget Testing**: Test the UI components for different weather states. **(coming soon..)**
+- **Integration Testing**: Ensure that the app functions correctly as a whole. **(coming soon)**
