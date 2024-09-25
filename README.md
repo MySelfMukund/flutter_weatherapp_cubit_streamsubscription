@@ -70,7 +70,8 @@ Here's an overview of the project folder structure:
 
 - **Flutter** - Cross-platform development framework
 - **Bloc (Cubit)** - State management
-- **StreamSubscription** - For making API requests to fetch weather data
+- **StreamSubscription** - For listening and handling real-time data updates
+- **HTTP** - For making API requests to fetch weather data
 
 ## Testing
 - **Unit Testing**: Writting unit tests for Cubits and repository logic. **(coming soon...)**
