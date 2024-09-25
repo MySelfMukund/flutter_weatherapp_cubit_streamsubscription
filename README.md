@@ -63,8 +63,8 @@ Here's an overview of the project folder structure:
 
 ## State Management
 
-- **Bloc/Cubit:** Used to manage state changes for tasks (add, delete, update).
-- **StreamSubscription:** Listens to task updates and streams them to the UI for real-time interaction.
+- **Bloc/Cubit:** Manages the application's state changes for loading, success, and error conditions when fetching weather data.
+- **StreamSubscription:** Provides real-time updates on weather data changes, keeping the UI in sync with the latest information.
 
 ## Technologies Used
 
