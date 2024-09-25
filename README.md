@@ -38,7 +38,6 @@ Ensure you have the following installed:
 4. Get the API Key from [OpenWeatherMap](https://home.openweathermap.org/api_keys) and store in the **.env file**
 <img width="698" alt="Screenshot 2024-09-25 at 9 16 08 AM" src="https://github.com/user-attachments/assets/d6c87bde-1fbe-423f-ae75-a00ea76f78c8">
 
-   
 5. Run the app:
    ```bash
    flutter run
@@ -58,8 +57,8 @@ Here's an overview of the project folder structure:
 
 ## How It Works
 
-- **Bloc Pattern** is used for managing the state of tasks in the app, ensuring separation of concerns and cleaner code.
-- **StreamSubscription** listens for task changes in real time and updates the UI accordingly.
+- **Bloc Pattern** The app uses the **Bloc** pattern to manage the state of the weather data and UI updates.
+- **StreamSubscription** allows the app to listen for changes in weather data in real-time, ensuring users always receive the latest updates.
 - **Repository Layer** handles data persistence, ensuring that tasks are stored and retrieved efficiently.
 
 ## State Management
@@ -71,4 +70,4 @@ Here's an overview of the project folder structure:
 
 - **Flutter** - Cross-platform development framework
 - **Bloc (Cubit)** - State management
-- **StreamSubscription** - For real-time updates and task management
+- **StreamSubscription** - For making API requests to fetch weather data
